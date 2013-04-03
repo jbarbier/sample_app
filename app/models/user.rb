@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 } # password presence: true was removed to avoid duplicate error messages due to password_digest (has_secure_password)
   validates :password_confirmation, presence: true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
